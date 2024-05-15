@@ -6,6 +6,7 @@ import time
 def generar_valores(escala, notas, hom, n):
 
     lista = []
+    lista_f = []
 
     buc1 = []
     buc2 = []
@@ -34,24 +35,23 @@ def generar_valores(escala, notas, hom, n):
     list_buc.append(buc3)
 
     for i in range(hom):
-        for j in rd.choice(list_buc):
-            lista.append(j)
+        lista.insert(rd.randint(0, n - 1), rd.choice(list_buc))
         i += 1
     
     for i in range(n - hom):
         list_rand = []
-        for j in range(4):
+        for _ in range(4):
             list_rand.append(notas[escala[rd.randint(0, len(escala) - 1)]])
-        for j in list_rand:
-            lista.append(j)
+        lista.insert(rd.randint(0, len(lista) - 1), list_rand)
         i += 1
 
-    print('\n',
-          buc1, '\n',
-          buc2, '\n',
-          buc3, '\n',)
+    for i in lista:
+        for j in i:
+            lista_f.append(j)
 
-    return lista
+    print('\n', buc1, '\n', buc2, '\n', buc3, '\n',)
+
+    return lista_f
 
 #def reproducir(lista):
 #    for i in lista:
@@ -60,10 +60,11 @@ def generar_valores(escala, notas, hom, n):
 
 tiempo = []
 esc = [0, 2, 4, 5, 7, 9, 11]
+ecsM = [0, 2, 3, 5, 7, 9, 10]
 #notas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 notas = ['C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4']
 
-valores = generar_valores(esc, notas, 18, 24)
+valores = generar_valores(esc, notas, 22, 30)
 
 for i in range(len(valores)):
     i += 1
@@ -73,4 +74,6 @@ print(valores)
 #reproducir(valores)
 
 plt.scatter(tiempo, valores)
+#lt.subplot().set_ylim(notas[0], notas[11])
+plt.subplot().set_yticks(range(len(notas)))
 plt.show()
