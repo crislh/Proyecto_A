@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 def generar_valores(escala, notas, n, sub_n):
 
     cant_partes = 3
-    lista = []
+    lista_partes = []
     lista_f = []
 
     for _ in range(cant_partes):
@@ -36,10 +36,13 @@ def generar_valores(escala, notas, n, sub_n):
             for i in lista_buc[rd.randint(0, len(lista_buc) - 1)]:
                 parte.append(i)
         
-        lista.append(parte)
+        lista_partes.append(parte)
     
+    for i in lista_partes:
+        print(i, '\n')
+
     for _ in range(sub_n):
-        lista_f.append(lista[rd.randint(0, len(lista) - 1)])
+        lista_f.append(lista_partes[rd.randint(0, len(lista_partes) - 1)])
 
     return lista_f
 
@@ -49,7 +52,9 @@ escM = [0, 2, 3, 5, 7, 9, 10]
 indice_notas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 notas = ['C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4']
 
-valores = generar_valores(esc, indice_notas, 60, 15)
+valores = generar_valores(esc, indice_notas, 16, 4)
+
+print(valores)
 
 len_valores = 0
 for i in valores:
