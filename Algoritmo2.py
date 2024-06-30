@@ -43,21 +43,25 @@ def generar_valores(escala, notas, n, sub_n):
 
     return lista_f
 
-metrica = []
+lectura = []
 esc = [0, 2, 4, 5, 7, 9, 11]
 escM = [0, 2, 3, 5, 7, 9, 10]
 indice_notas = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 notas = ['C4', 'Db4', 'D4', 'Eb4', 'E4', 'F4', 'Gb4', 'G4', 'Ab4', 'A4', 'Bb4', 'B4']
 
-valores = generar_valores(esc, indice_notas, 32, 8)
+valores = generar_valores(esc, indice_notas, 60, 15)
 
-print(valores)
+len_valores = 0
+for i in valores:
+    for j in i:
+        lectura.append(j)
+        len_valores += 1
 
-#metrica = list(range(1, len(valores) + 1))
+lectura = list(range(1, len_valores + 1))
 
-#plt.scatter(metrica, valores)
-#plt.yticks(range(len(notas)), notas)
-#plt.show()
+plt.scatter(lectura, valores)
+plt.yticks(range(len(notas)), notas)
+plt.show()
 
 
 
